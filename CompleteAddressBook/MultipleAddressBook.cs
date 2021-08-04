@@ -1,97 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CompleteAddressBook
 {
     class MultipleAddressBook
     {
-		public static LinkedList<ContactPerson> userList;
+		public List<ContactPerson> userList;
 		public MultipleAddressBook()
 		{
-			userList = new LinkedList<ContactPerson>();
+			this.userList = new List<ContactPerson>();
 		}
-		public static void MainMenu()
+		public void AddContact(String firstName, String lastName, String address, String city, String state, String zip, String contact, String email)
 		{
-			bool flag = true;
-			while (flag)
+			bool duplicate = equals(firstName);
+			if (duplicate)
 			{
-				Console.WriteLine("******WELCOME TO ADDRESS BOOK******");
-				Console.WriteLine("1. Add_Contact \n2. Display_Contact \n3. Update_Contact\n4. Delet_Contact\n5. Exit");
-				Console.WriteLine("Enter Your Choice:");
-				int input = Convert.ToInt32(Console.ReadLine());
-				switch (input)
+				Console.WriteLine($"Duplicate Contact not allowed '{0}' is already in address book", firstName);
+			}
+			else
+			{
+				ContactPerson user = new ContactPerson(firstName, lastName, address, city, state, zip, contact, email);
+				userList.Add(user);
+			}
+		}
+		public bool equals(string first_name)
+		{
+			if (userList.Any(e => e.firstName == first_name))
+				return true;
+			else
+				return false;
+		}
+
+		public void Display()
+		{
+			if (userList.Count() > 0)
+			{
+				Console.WriteLine("----------------------------------------------------------------------");
+			    Console.WriteLine("FirstName   LastName   Address,  City,  State,  Zip,   Contact,  Email");
+			    Console.WriteLine("----------------------------------------------------------------------");
+				foreach (ContactPerson cont in userList)
 				{
-					case 1:
-						Console.Clear();
-						addUser();
-						Console.WriteLine("Details Added Successfully. \n");
-						break;
-					case 2:
-						Console.Clear();
-						Display();
-						break;
-					case 3:
-						Console.Write("Enter FirstName U want to Delet : ");
-						string deletName = Console.ReadLine();
-						DeletContact(deletName);
-						break;
-					case 4:
-						Console.WriteLine("Enter FirstName U want To Update");
-						string fname = Console.ReadLine();
-						EditContact(fname);
-						break;
-					case 5:
-						flag = false;
-						break;
-                    default:
-                        Console.WriteLine("Invalid option ???");
-                        break;
-                }
+					cont.print();
+				}
+				Console.WriteLine("-----------------------------End_of_book------------------------------");
 			}
-		}
-		
-		public static void addUser()
-		{
-			Console.Write("Enter FirstName: ");
-			string firstName = Console.ReadLine();
-			bool check = CheckContact(firstName);
-			if (check)
+			else
 			{
-				Console.Write("Enter FirstName: ");
-				firstName = Console.ReadLine();
+				Console.WriteLine("Address_Book is Empty...!!!!!");
 			}
-			Console.Write("Enter LastName: ");
-			string lastName = Console.ReadLine();
-			Console.Write("Enter Address : ");
-			string address = Console.ReadLine();
-			Console.Write("Enter City : ");
-			string city = Console.ReadLine();
-			Console.Write("Enter State : ");
-			string state = Console.ReadLine();
-			Console.Write("Enter zip : ");
-			string zip = Console.ReadLine();
-			Console.Write("Enter Contact No: ");
-			string contact = Console.ReadLine();
-			Console.Write("Enter Email: ");
-			string email = Console.ReadLine();
-			ContactPerson user = new ContactPerson(firstName, lastName, address, city, state, zip, contact, email);
-			userList.AddLast(user);
-			user.print();
 		}
-		public static void Display()
-		{
-			Console.WriteLine("----------------------------------------------------------------------");
-			Console.WriteLine("FirstName   LastName   Address,  City,  State,  Zip,   Contact,  Email");
-			Console.WriteLine("----------------------------------------------------------------------");
-			foreach (var item in userList)
-			{
-				ContactPerson p = item;
-				p.print();
-			}
-			Console.WriteLine("-----------------------------End_of_book------------------------------");
-		}
-		public static void EditContact(string fname)
+		public void EditContact(string fname)
 		{
 			int size = userList.Count;
 			int check = 0;
@@ -100,9 +60,24 @@ namespace CompleteAddressBook
 				check++;
 				if (user.firstName.Equals(fname))
 				{
-					addUser();
 					userList.Remove(user);
-					Console.WriteLine("Contact Updated Successfully...");
+					Console.Write("Enter FirstName: ");
+					string firstName = Console.ReadLine();
+					Console.Write("Enter LastName: ");
+					string lastName = Console.ReadLine();
+					Console.Write("Enter Address : ");
+					string address = Console.ReadLine();
+					Console.Write("Enter City : ");
+					string city = Console.ReadLine();
+					Console.Write("Enter State : ");
+					string state = Console.ReadLine();
+					Console.Write("Enter zip : ");
+					string zip = Console.ReadLine();
+					Console.Write("Enter Contact No: ");
+					string contact = Console.ReadLine();
+					Console.Write("Enter Email: ");
+					string email = Console.ReadLine();
+					AddContact(firstName, lastName, address, city, state, zip, contact, email);
 					break;
 				}
 				else if (size == check)
@@ -112,7 +87,8 @@ namespace CompleteAddressBook
 				}
 			}
 		}
-		public static void DeletContact(string Fname)
+
+		public void DeletContact(string Fname)
 		{
 			int size = userList.Count;
 			int check = 0;
@@ -123,7 +99,7 @@ namespace CompleteAddressBook
 				{
 					userList.Remove(user);
 					Console.WriteLine("Contact Deleted Successfully...");
-					Display();
+
 					break;
 				}
 				else if (size == check)
@@ -133,19 +109,31 @@ namespace CompleteAddressBook
 				}
 			}
 		}
-		public static bool CheckContact(string fname)
+		public void SerchContact(string place)
 		{
-			bool check = false;
-			foreach (ContactPerson user in userList)
+			bool exits = isPlaceExist(place);
+			if (exits)
 			{
-				if (user.firstName.Equals(fname))
+				foreach (ContactPerson user in userList.FindAll(x => x.address.Equals(place)).ToList())
 				{
-					check = true;
-					Console.WriteLine($"Contact {fname} alerady presented pls Enter diff. First_Name");
-					break;
+					user.print();
+				}
+				foreach (ContactPerson user in userList.FindAll(x => x.state.Equals(place)).ToList())
+				{
+					user.print();
 				}
 			}
-			return check;
+			else
+			{
+				Console.WriteLine($"Contect not Found From {0}", place);
+			}
+		}
+		public bool isPlaceExist(string place)
+		{
+			if (this.userList.Any(e => e.address == place) || this.userList.Any(e => e.state == place))
+				return true;
+			else
+				return false;
 		}
 	}
 }

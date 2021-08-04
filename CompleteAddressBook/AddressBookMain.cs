@@ -6,6 +6,7 @@ namespace CompleteAddressBook
 	class AddressBookMain
 	{
 		public static Dictionary<string, MultipleAddressBook> addressBookDict = new Dictionary<string, MultipleAddressBook>();
+		public static MultipleAddressBook multiadd = new MultipleAddressBook();
 		public static void Main(string[] args)
 		{
 
@@ -33,11 +34,10 @@ namespace CompleteAddressBook
 						Console.Clear();
 						Console.WriteLine("AddressBook_Created successfully...");
 						break;
-					
 					case 2:
-						Console.WriteLine($"you have {size} AddressBook.");
+						Console.WriteLine($"You have {size} AddressBook.");
 
-						foreach (var address in addressBookDict)
+						foreach (var address in addressBookDict.Keys)
 						{
 							Console.WriteLine(address);
 						}
@@ -51,20 +51,20 @@ namespace CompleteAddressBook
 							{
 								Console.Clear();
 								Console.WriteLine("Opened Address_Book :-->" + bookname);
-								MultipleAddressBook.MainMenu();
+								MainMenu(bookname);
 							}
 							else if (size == ch)
 							{
 								Console.Clear();
 								Console.WriteLine("AddressBook not present!!!!!");
 							}
-
 						}
 						break;
 					case 3:
+						Console.WriteLine($"You have {size} AddressBook.");
 						foreach (var address in addressBookDict)
 						{
-							Console.WriteLine(address);
+							Console.WriteLine(address.Key);
 						}
 						Console.Write("Enter Address_BookName  : ");
 						string name = Console.ReadLine();
@@ -108,6 +108,75 @@ namespace CompleteAddressBook
 				}
 			}
 			return check;
+		}
+		public static void addUser(MultipleAddressBook MultAddObj)
+		{
+			Console.Write("Enter FirstName: ");
+			string firstName = Console.ReadLine();
+			Console.Write("Enter LastName: ");
+			string lastName = Console.ReadLine();
+			Console.Write("Enter Address : ");
+			string address = Console.ReadLine();
+			Console.Write("Enter City : ");
+			string city = Console.ReadLine();
+			Console.Write("Enter State : ");
+			string state = Console.ReadLine();
+			Console.Write("Enter zip : ");
+			string zip = Console.ReadLine();
+			Console.Write("Enter Contact No: ");
+			string contact = Console.ReadLine();
+			Console.Write("Enter Email: ");
+			string email = Console.ReadLine();
+			MultAddObj.AddContact(firstName, lastName, address, city, state, zip, contact, email);
+			
+		}
+		public static void MainMenu(string bookname)
+		{
+
+			bool flag = true;
+			while (flag)
+			{
+				Console.WriteLine("******WELCOME TO ADDRESS BOOK******");
+				Console.WriteLine("1. Add_Contact \n2. Display_Contact \n3. Delet_Contact \n4. Update_Contact \n5. Serch_FromAllContact \n6. Exit");
+				Console.WriteLine("Enter Your Choice:");
+				int input = Convert.ToInt32(Console.ReadLine());
+				switch (input)
+				{
+					case 1:
+						Console.Clear();
+						addUser(addressBookDict[bookname]);
+						Console.WriteLine("Details Added Successfully. \n");
+						break;
+					case 2:
+						Console.Clear();
+						addressBookDict[bookname].Display();
+						break;
+					case 3:
+						Console.Write("Enter FirstName U want to Delet : ");
+						string deletName = Console.ReadLine();
+						addressBookDict[bookname].DeletContact(deletName);
+						break;
+					case 4:
+						Console.WriteLine("Enter FirstName U want To Update");
+						string fname = Console.ReadLine();
+						addressBookDict[bookname].DeletContact(fname);
+						break;
+					case 5:
+						Console.Write("Enter City Or State name U want To Serch : ");
+						string place = Console.ReadLine();
+						foreach (var addbook in addressBookDict.Keys)
+						{
+							addressBookDict[addbook].SerchContact(place);
+						}
+						break;
+					case 6:
+						flag = false;
+						break;
+					default:
+						Console.WriteLine("Invalid option ???");
+						break;
+				}
+			}
 		}
 	}
 }
