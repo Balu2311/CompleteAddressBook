@@ -13,7 +13,6 @@ namespace CompleteAddressBook
 
 			while (flag)
 			{
-				Console.WriteLine();
 				Console.WriteLine("******WELCOME TO ADDRESS BOOK******");
 				Console.WriteLine("1. Create_AddressBooks \n2. Open_AddressBooks \n3. DeletAddressBook \n4. Exit");
 				int choice = Convert.ToInt32(Console.ReadLine());
