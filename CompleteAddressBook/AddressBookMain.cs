@@ -15,7 +15,7 @@ namespace CompleteAddressBook
 			while (flag)
 			{
 				Console.WriteLine("******WELCOME TO ADDRESS BOOK******");
-				Console.WriteLine("1. Create_AddressBooks \n2. Open_AddressBooks \n3. DeletAddressBook \n4. Exit");
+				Console.WriteLine("1. Create_AddressBooks \n2. Open_AddressBooks \n3. Count_TotalContacts \n4. Serch_FromAllContact \n5. DeletAddressBook \n6. Exit");
 				int choice = Convert.ToInt32(Console.ReadLine());
 				int size = addressBookDict.Count;
 				switch (choice)
@@ -61,6 +61,26 @@ namespace CompleteAddressBook
 						}
 						break;
 					case 3:
+						Console.Write("Enter City or State want to Count : ");
+						string countplace = Console.ReadLine();
+						foreach (var addbook in addressBookDict.Keys)
+						{
+							Console.WriteLine("Contacts From AddressBook : " + addbook);
+							addressBookDict[addbook].CountContact(countplace);
+						}
+						break;
+
+					case 4:
+						Console.Write("Enter City Or State name U want To Serch : ");
+						string place = Console.ReadLine();
+						foreach (var addbook in addressBookDict.Keys)
+						{
+							Console.WriteLine("Contacts From AddressBook : " + addbook);
+							addressBookDict[addbook].SerchContact(place);
+						}
+						break;
+
+					case 5:
 						Console.WriteLine($"You have {size} AddressBook.");
 						foreach (var address in addressBookDict)
 						{
@@ -87,8 +107,11 @@ namespace CompleteAddressBook
 							}
 						}
 						break;
-					case 4:
+					case 6:
 						flag = false;
+						break;
+					default:
+						Console.WriteLine("Invalid Option...");
 						break;
 				}
 			}
@@ -137,7 +160,7 @@ namespace CompleteAddressBook
 			while (flag)
 			{
 				Console.WriteLine("******WELCOME TO ADDRESS BOOK******");
-				Console.WriteLine("1.Add_Contact \n2.Display_Contact \n3.Delet_Contact \n4.Update_Contact \n5.Serch_FromAllContact \n6.Count_Contacts\n7.Exit");
+				Console.WriteLine("1.Add_Contact \n2.Display_Contact \n3.Delet_Contact \n4.Update_Contact \n5.Serch_FromAllContact \n6.Count_Contacts\n7.Sort_Contacts\n8.Exit");
 				Console.WriteLine("Enter Your Choice:");
 				int input = Convert.ToInt32(Console.ReadLine());
 				switch (input)
@@ -179,6 +202,11 @@ namespace CompleteAddressBook
 						}
 						break;
 					case 7:
+						
+						Console.WriteLine("Alphabetically_Sorted_List");
+						addressBookDict[bookname].SortAlphabetically();
+						break;
+					case 8:
 						flag = false;
 						break;
 					default:
