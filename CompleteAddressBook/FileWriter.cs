@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.Json;
+using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace CompleteAddressBook
 {
@@ -9,6 +12,7 @@ namespace CompleteAddressBook
     {
         public static string path = @"G:\Bridgelab\CompleteAddressBook\CompleteAddressBook\AddressBookFile.txt";
         public static string csvPath = @"G:\Bridgelab\CompleteAddressBook\CompleteAddressBook\CSV_AddressBook.csv";
+        public static string jsonPath = @"G:\Bridgelab\CompleteAddressBook\CompleteAddressBook\JSON_AddressBook.json";
         public static void WriteUsingStreamWriter(List<ContactPerson> data)
         {
 
@@ -92,6 +96,39 @@ namespace CompleteAddressBook
             else
             {
                 Console.WriteLine("File not avilable..");
+            }
+        }
+
+        public static void WriteContactsInJSONFile(List<ContactPerson> contacts)
+        {
+            if (File.Exists(jsonPath))
+            {
+                JsonSerializer jsonSerializer = new JsonSerializer();
+                using (StreamWriter streamWriter = new StreamWriter(jsonPath))
+                using (JsonWriter writer = new JsonTextWriter(streamWriter))
+                {
+                    jsonSerializer.Serialize(writer, contacts);
+                }
+                Console.WriteLine("Conatact stored in Json File...");
+            }
+            else
+            {
+                Console.WriteLine("File not found...");
+            }
+        }
+        public static void ReadContactsFromJSONFile()
+        {
+            if (File.Exists(jsonPath))
+            {
+                IList<ContactPerson> contactsRead = JsonConvert.DeserializeObject<IList<ContactPerson>>(File.ReadAllText(jsonPath));
+                foreach (ContactPerson contact in contactsRead)
+                {
+                    contact.print();
+                }
+            }
+            else
+            {
+                Console.WriteLine("File not found...");
             }
         }
     }
