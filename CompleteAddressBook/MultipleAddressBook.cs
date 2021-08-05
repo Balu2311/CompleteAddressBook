@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CompleteAddressBook
 {
-    class MultipleAddressBook
+    public class MultipleAddressBook
     {
 		public List<ContactPerson> userList;
 		public MultipleAddressBook()
@@ -221,6 +221,14 @@ namespace CompleteAddressBook
 		public void readFromCsvFile()
 		{
 			FileWriter.readFromCSVFile();
+		}
+		public void writeInJsonFile()
+		{
+			FileWriter.WriteContactsInJSONFile(userList);
+		}
+		public void readInJsonFile()
+		{
+			FileWriter.ReadContactsFromJSONFile();
 		}
 	}
 }
