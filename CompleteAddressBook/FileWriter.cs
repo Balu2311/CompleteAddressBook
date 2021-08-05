@@ -20,7 +20,7 @@ namespace CompleteAddressBook
                     streamWriter.WriteLine("FirstName\tLastName\t Address\t City\t State\t Zip\t Contact\t Email");
                     foreach (ContactPerson contacts in data)
                     {
-                        streamWriter.WriteLine(contacts.firstName + "\t" + contacts.lastName + "\t" + contacts.address + "\t" + contacts.city + "\t" + contacts.state + "\t" + contacts.zip +"\t" + contacts.contact + "\t" + contacts.email);
+                        streamWriter.WriteLine(contacts.firstName + "," + contacts.lastName + "," + contacts.address + "," + contacts.city + "," + contacts.state + "," + contacts.zip + "," + contacts.contact + "," + contacts.email);
                     }
                     streamWriter.Close();
                 }
