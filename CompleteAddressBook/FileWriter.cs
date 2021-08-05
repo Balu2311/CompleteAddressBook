@@ -60,7 +60,7 @@ namespace CompleteAddressBook
                     streamWriter.WriteLine("FirstName,LastName,Address,City,State,Zip,Contact,Email");
                     foreach (ContactPerson contacts in dataa)
                     {
-                        streamWriter.WriteLine(contacts.firstName + "\t" + contacts.lastName + "\t" + contacts.address + "\t" + contacts.city + "\t" + contacts.state + "\t" + contacts.zip + "\t" + contacts.contact + "\t" + contacts.email);
+                        streamWriter.WriteLine(contacts.firstName + "," + contacts.lastName + "," + contacts.address + "," + contacts.city + "," + contacts.state + "," + contacts.zip + "," + contacts.contact + "," + contacts.email);
                     }
                     streamWriter.Close();
                     Console.WriteLine("Contacts Stored in Csv_File.");
