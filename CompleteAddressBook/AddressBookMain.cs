@@ -137,7 +137,7 @@ namespace CompleteAddressBook
 			while (flag)
 			{
 				Console.WriteLine("******WELCOME TO ADDRESS BOOK******");
-				Console.WriteLine("1. Add_Contact \n2. Display_Contact \n3. Delet_Contact \n4. Update_Contact \n5. Serch_FromAllContact \n6. Exit");
+				Console.WriteLine("1.Add_Contact \n2.Display_Contact \n3.Delet_Contact \n4.Update_Contact \n5.Serch_FromAllContact \n6.Count_Contacts\n7.Exit");
 				Console.WriteLine("Enter Your Choice:");
 				int input = Convert.ToInt32(Console.ReadLine());
 				switch (input)
@@ -159,7 +159,7 @@ namespace CompleteAddressBook
 					case 4:
 						Console.WriteLine("Enter FirstName U want To Update");
 						string fname = Console.ReadLine();
-						addressBookDict[bookname].DeletContact(fname);
+						addressBookDict[bookname].EditContact(fname);
 						break;
 					case 5:
 						Console.Write("Enter City Or State name U want To Serch : ");
@@ -170,6 +170,15 @@ namespace CompleteAddressBook
 						}
 						break;
 					case 6:
+						Console.Write("Enter City or State want to Count : ");
+						string countplace = Console.ReadLine();
+						foreach (var addbook in addressBookDict.Keys)
+						{
+							Console.WriteLine("Contacts From AddressBook : " + addbook);
+							addressBookDict[addbook].CountContact(countplace);
+						}
+						break;
+					case 7:
 						flag = false;
 						break;
 					default:
