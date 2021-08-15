@@ -40,5 +40,13 @@ namespace AddressBookTest
             bool result = addrepo.EditContactUsingFirstName(editModel);
             Assert.AreEqual(expected, result);
         }
+        [TestMethod]
+        public void GivenContactInsertDate_ThenReturnTotalEmployeeBetweenRange()
+        {
+            AddressBookRepo addrepo = new AddressBookRepo();
+            int count = addrepo.getContactDataWithGivenDate();
+            int expected = 10;
+            Assert.AreEqual(expected, count);
+        }
     }
 }
