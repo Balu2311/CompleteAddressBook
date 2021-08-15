@@ -48,5 +48,13 @@ namespace AddressBookTest
             int expected = 10;
             Assert.AreEqual(expected, count);
         }
+        [TestMethod]
+        public void GivenAddressBook_returnNumberOf_ContactsFromPerticularCityOrState()
+        {
+            AddressBookRepo addrepo = new AddressBookRepo();
+            int count = addrepo.RetrieveContactFromPerticularCityOrState();
+            int expected = 7;
+            Assert.AreEqual(expected, count);
+        }
     }
 }
