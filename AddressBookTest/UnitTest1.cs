@@ -19,8 +19,26 @@ namespace AddressBookTest
         {
             AddressBookRepo addressbookrepo = new AddressBookRepo();
             int result = addressbookrepo.RetrieveContactFromPerticularAddressBook();
-            int expect = 10;
+            int expect = 11;
             Assert.AreEqual(result, expect);
+        }
+        [TestMethod]
+        public void GivenAddressBooks_WhenEnterFirstName_ThenShouldUpdateContactInAddressBook()
+        {
+            bool expected = true;
+            AddressBookRepo addrepo = new AddressBookRepo();
+            AddressBookModel addmodel = new AddressBookModel();
+
+            AddressBookModel editModel = new AddressBookModel();
+            editModel.First_Name = "Balu";
+            editModel.Last_Name = "Nagireddy";
+            editModel.City = "Hyderbad";
+            editModel.State = "Telengana";
+            editModel.Email = "balureddy@gmail.com";
+            editModel.BookName = "address001";
+            editModel.AddressbookType = "office";
+            bool result = addrepo.EditContactUsingFirstName(editModel);
+            Assert.AreEqual(expected, result);
         }
     }
 }

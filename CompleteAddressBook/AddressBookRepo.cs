@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -7,8 +8,8 @@ namespace CompleteAddressBook
 {
     public class AddressBookRepo
     {
-        public static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=addressbook_service;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        SqlConnection connection = new SqlConnection(connectionString);
+        public static string connectionString1 = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=addressbook_service;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        SqlConnection connection = new SqlConnection(connectionString1);
 
         public bool EstablishConnection()
         {
@@ -74,6 +75,35 @@ namespace CompleteAddressBook
             finally
             {
                 this.connection.Close();
+            }
+        }
+        public bool EditContactUsingFirstName(AddressBookModel model)
+        {
+            try
+            {
+                using (this.connection)
+                {
+                    string updateQuery = @"UPDATE address_book SET last_name = @Last_Name, city = @City, state = @State, email = @Email, bookname = @BookName, addressbooktype = @AddressbookType WHERE first_name = @First_Name;";
+                    SqlCommand command = new SqlCommand(updateQuery, connection);
+                    command.Parameters.AddWithValue("@First_Name", model.First_Name);
+                    command.Parameters.AddWithValue("@Last_Name", model.Last_Name);
+                    command.Parameters.AddWithValue("@City", model.City);
+                    command.Parameters.AddWithValue("@State", model.State);
+                    command.Parameters.AddWithValue("@Email", model.Email);
+                    command.Parameters.AddWithValue("@BookName", model.BookName);
+                    command.Parameters.AddWithValue("@AddressbookType", model.AddressbookType);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    Console.WriteLine("Contact Updated successfully...");
+                    this.connection.Close();
+                    return true;
+                }
+
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw new Exception(e.Message);
             }
         }
     }
