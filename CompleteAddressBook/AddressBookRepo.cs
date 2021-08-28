@@ -183,9 +183,6 @@ namespace CompleteAddressBook
                 throw new Exception(e.Message);
             }
         }
-<<<<<<< HEAD
-
-=======
         public bool AddContact(AddressBookModel model)
         {
             try
@@ -220,6 +217,6 @@ namespace CompleteAddressBook
                 throw new Exception(e.Message);
             }
         }
->>>>>>> UC20_AddNewRecordsin_Addressbook
+
     }
 }

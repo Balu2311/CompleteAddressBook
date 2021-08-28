@@ -17,5 +17,6 @@ namespace CompleteAddressBook
         public string BookName { get; set; }
         public string AddressbookType { get; set; }
         public DateTime idate { get; set; }
+
     }
 }

@@ -1,5 +1,6 @@
 using CompleteAddressBook;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace AddressBookTest
 {
@@ -56,9 +57,6 @@ namespace AddressBookTest
             int expected = 7;
             Assert.AreEqual(expected, count);
         }
-<<<<<<< HEAD
-
-=======
         [TestMethod]
         public void GivenAddressBooks_AddNewRecord_ThenShouldAddContactInAddressBook()
         {
@@ -76,6 +74,31 @@ namespace AddressBookTest
             bool result = addrepo.EditContactUsingFirstName(addModel);
             Assert.AreEqual(expected, result);
         }
->>>>>>> UC20_AddNewRecordsin_Addressbook
+        
+        // Calculating required time to adding new contact in database
+        [TestMethod]
+        public void GivenData_WhenAddedInDatabase_ThenCalculateRequiredTime()
+        {
+            AddressBookRepo addrepo = new AddressBookRepo();
+            AddressBookModel addModel = new AddressBookModel()
+            {
+                First_Name = "manish",
+                Last_Name = "ak",
+                Address = "annanagar",
+                City = "chennai",
+                State = "Tammilnadu",
+                Email = "mkda@gmail.com",
+                BookName = "address002",
+                AddressbookType = "office",
+                Zip = "145236",
+                Phone_Number = "7852143690",
+                idate = new DateTime(2010, 11, 02)
+            };
+            DateTime startTime = DateTime.Now;
+            addrepo.AddContact(addModel);
+            DateTime stopTime = DateTime.Now;
+            Console.WriteLine($"Duration taken for insertion is {0}", (stopTime - startTime));
+        }
+
     }
 }
