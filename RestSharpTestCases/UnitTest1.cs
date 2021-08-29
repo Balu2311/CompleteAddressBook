@@ -27,7 +27,7 @@ namespace RestSharpTestCases
         [TestInitialize]
         public void SetUp()
         {
-            client = new RestClient("http://localhost:4000");
+            client = new RestClient("http://localhost:3000");
         }
 
         private IRestResponse getEmployeeList()
