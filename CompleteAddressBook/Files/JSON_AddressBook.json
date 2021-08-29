@@ -35,6 +35,42 @@
       "state": "Ap",
       "zip": "523116",
       "id": 4
+    },
+    {
+      "firstName": "Vivek",
+      "lastName": "Reddy",
+      "address": "ongl",
+      "contact": "9678541230",
+      "state": "TN",
+      "zip": "654543",
+      "id": 5
+    },
+    {
+      "firstName": "Ajay",
+      "lastName": "Kaumar",
+      "address": "Konda",
+      "contact": "9641541230",
+      "state": "TS",
+      "zip": "500047",
+      "id": 6
+    },
+    {
+      "firstName": "Pawan",
+      "lastName": "star",
+      "address": "Amaravahi",
+      "contact": "9688541230",
+      "state": "AP",
+      "zip": "523441",
+      "id": 7
+    },
+    {
+      "firstName": "Swati",
+      "lastName": "Ba",
+      "address": "peta",
+      "contact": "9667541230",
+      "state": "WB",
+      "zip": "456789",
+      "id": 8
     }
   ]
 }
