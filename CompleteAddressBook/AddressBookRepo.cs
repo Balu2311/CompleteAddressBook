@@ -201,7 +201,7 @@ namespace CompleteAddressBook
                     command.Parameters.AddWithValue("@Email", model.Email);
                     command.Parameters.AddWithValue("@BookName", model.BookName);
                     command.Parameters.AddWithValue("@AddressbookType", model.AddressbookType);
-                    command.Parameters.AddWithValue("@Idate", model.idate);
+                    command.Parameters.AddWithValue("@idate", model.idate);
                     this.connection.Open();
                     var result = command.ExecuteNonQuery();
                     this.connection.Close();
@@ -217,6 +217,5 @@ namespace CompleteAddressBook
                 throw new Exception(e.Message);
             }
         }
-
     }
 }

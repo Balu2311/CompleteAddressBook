@@ -82,7 +82,7 @@ namespace AddressBookTest
             AddressBookRepo addrepo = new AddressBookRepo();
             AddressBookModel addModel = new AddressBookModel()
             {
-                First_Name = "manish",
+                First_Name = "rakesh",
                 Last_Name = "ak",
                 Address = "annanagar",
                 City = "chennai",
@@ -99,6 +99,5 @@ namespace AddressBookTest
             DateTime stopTime = DateTime.Now;
             Console.WriteLine($"Duration taken for insertion is {0}", (stopTime - startTime));
         }
-
     }
 }

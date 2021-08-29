@@ -1,1 +1,40 @@
-[{"firstName":"Raju","lastName":"Bhai","address":"Kdkr","city":"Ongl","state":"Ap","zip":"523115","contact":"9876543210","email":"raju@gmail.com"},{"firstName":"Reddy ","lastName":"Balu","address":"V v palem","city":"Kdkr","state":"AP","zip":"523116","contact":"9491407489","email":"vbnreddy5@gmail.com"}]
+{
+  "address": [
+    {
+      "id": 1,
+      "firstName": "Balu",
+      "lastName": "Reddy",
+      "address": "chennai",
+      "contact": "3434366",
+      "state": "maha",
+      "zip": "434367"
+    },
+    {
+      "firstName": "Dipika",
+      "lastName": "Nayar",
+      "addrss": "Latur",
+      "contact": "8794561230",
+      "state": "maha",
+      "zip": "145789",
+      "id": 2
+    },
+    {
+      "firstName": "Imran",
+      "lastName": "Shaikh",
+      "addrss": "pune",
+      "contact": "6143237890",
+      "state": "maha",
+      "zip": "145263",
+      "id": 3
+    },
+    {
+      "firstName": "vikas",
+      "lastName": "Ressdy",
+      "addrss": "kdkr",
+      "contact": "8794561230",
+      "state": "Ap",
+      "zip": "523116",
+      "id": 4
+    }
+  ]
+}
